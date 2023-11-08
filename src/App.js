@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./App.css";
+import {
+  AppContainer,
+  Header,
+  Title,
+  APODImage,
+  Explanation,
+} from "./components/StyledComponents.js";
 
 function App() {
   const [apodData, setApodData] = useState(null);
@@ -21,18 +27,18 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>NASA Astronomy Picture of the Day</h1>
-        {apodData && (
-          <>
-            <img src={apodData.url} alt={apodData.title} />
-            <h2>{apodData.title}</h2>
-            <p>{apodData.explanation}</p>
-          </>
-        )}
-      </header>
-    </div>
+    <AppContainer>
+      <Header>
+        <Title>NASA Astronomy Picture of the Day</Title>
+      </Header>
+      {apodData && (
+        <div>
+          <APODImage src={apodData.url} alt={apodData.title} />
+          <Title>{apodData.title}</Title>
+          <Explanation>{apodData.explanation}</Explanation>
+        </div>
+      )}
+    </AppContainer>
   );
 }
 
